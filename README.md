@@ -1,4 +1,9 @@
-# gin
+# GinVueBlog
+
+### TODO
+
+- 增加 doc 目录
+- 增加前端请求
 
 gin启动：go run main.go
 
