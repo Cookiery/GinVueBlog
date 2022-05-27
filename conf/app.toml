@@ -1,0 +1,4 @@
+
+[server]
+AppMode = "debug"
+HttPPort = ":8080"

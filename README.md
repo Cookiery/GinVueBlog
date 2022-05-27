@@ -4,6 +4,7 @@
 
 - 增加 doc 目录
 - 增加前端请求
+- 做数据库：数据库流程
 
 gin启动：go run main.go
 
@@ -25,3 +26,4 @@ https://github.com/jincheng9/go-tutorial
 
 https://github.com/skyhee/gin-doc-cn#install
 
+toml documention: https://godocs.io/github.com/BurntSushi/toml
