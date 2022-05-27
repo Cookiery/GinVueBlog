@@ -5,6 +5,7 @@
 - 增加 doc 目录
 - 增加前端请求
 - 做数据库：数据库流程
+- 研究前端部署（webpage目录）
 
 gin启动：go run main.go
 
