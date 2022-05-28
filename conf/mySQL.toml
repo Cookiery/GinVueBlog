@@ -1,0 +1,5 @@
+[database]
+Host = "localhost"
+Port = 8808
+User = "admin"
+PassWord = "admin123"

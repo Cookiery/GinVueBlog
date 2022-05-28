@@ -1,4 +1,5 @@
-
-[server]
+# AppMode 服务模式
 AppMode = "debug"
-HttPPort = ":8080"
+
+# 控制端口
+HttPPort = ":8081"
