@@ -21,6 +21,10 @@ func InitServer() *Server {
 	return &server
 }
 
+func InitLogger() error {
+	return nil
+}
+
 func initMySQL() {
 
 }

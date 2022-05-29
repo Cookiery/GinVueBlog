@@ -7,7 +7,8 @@ import (
 func main() {
 	server := InitServer()
 	// 启动服务
-	r := gin.Default() // Default 带有 Logger 和 Recovery 中间件
+	gin.SetMode(server.AppMode) // 设置模式
+	r := gin.Default()          // Default() 带有 Logger 和 Recovery 中间件
 	r.GET("/hello", func(c *gin.Context) {
 		c.JSON(200, gin.H{"msg": "hello"})
 	})

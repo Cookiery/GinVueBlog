@@ -1,4 +1,5 @@
 # AppMode 服务模式
+# debug：开发模式，release：生产模式
 AppMode = "debug"
 
 # 控制端口
