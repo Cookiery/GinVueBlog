@@ -1,5 +1,5 @@
-[database]
+# MySQL 数据库配置说
+User = "root"
+PassWord = "123456"
 Host = "localhost"
-Port = 8808
-User = "admin"
-PassWord = "admin123"
+Port = "3306"

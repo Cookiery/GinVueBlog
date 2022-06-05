@@ -6,6 +6,7 @@ import (
 	"github.com/BurntSushi/toml"
 )
 
+// Server 启动服务
 type Server struct {
 	AppMode  string
 	HTTPPort string
@@ -23,8 +24,4 @@ func InitServer() *Server {
 
 func InitLogger() error {
 	return nil
-}
-
-func initMySQL() {
-
 }

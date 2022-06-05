@@ -7,7 +7,9 @@
 - 做数据库：数据库流程
 - 研究前端部署（webpage目录）小参考：https://github.com/zhenorzz/goploy
 
-gin启动：go run main.go
+gin启动：go run .
+
+问题：go run main.go 不会自动加载 main.go 同级目录下，同一个 package 的文件。	
 
 gin启动过程：https://www.jianshu.com/p/ac1dbe709338
 
