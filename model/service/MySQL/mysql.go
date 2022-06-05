@@ -22,7 +22,7 @@ func InitDB() *sql.DB {
 	var (
 		dbConf DBConf
 		err    error
-		dsn    strings.Builder
+		dsn    strings.Builder // Data Source Name
 	)
 	if _, err = toml.DecodeFile("./conf/MySQL.toml", &dbConf); err != nil {
 		// 这里打个日志
