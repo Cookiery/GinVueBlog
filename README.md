@@ -2,7 +2,8 @@
 
 ### TODO
 
-- 增加 doc 目录
+- mac Air 安装 MySQL 和 Navicat
+- 调通 MySQL 和 Navicat 和 GVB 请求
 - 增加前端请求
 - 做数据库：数据库流程
 - 研究前端部署（webpage目录）小参考：https://github.com/zhenorzz/goploy
