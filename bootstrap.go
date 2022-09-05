@@ -1,27 +1,6 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/BurntSushi/toml"
-)
-
-// Server 启动服务
-type Server struct {
-	AppMode  string
-	HTTPPort string
-}
-
-// InitServer 初始化服务变量
-func InitServer() *Server {
-	var server Server
-	if _, err := toml.DecodeFile("./conf/app.toml", &server); err != nil {
-		// 打日志
-		fmt.Println(err)
-	}
-	return &server
-}
-
+// InitLogger 初始化日志服务
 func InitLogger() error {
 	return nil
 }
