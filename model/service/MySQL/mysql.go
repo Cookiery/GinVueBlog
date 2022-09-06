@@ -19,17 +19,21 @@ type DBConf struct {
 }
 
 var (
-	db  *gorm.DB // 全局数据库
-	err error    // 全局错误
+	dbConf DBConf   // 数据库配置
+	db     *gorm.DB // 全局数据库
+	err    error    // 全局错误
 )
 
-// InitDB 初始化数据库
-func InitDB() {
-	var dbConf DBConf
+// init 初始化服务配置
+func init() {
 	if _, err = toml.DecodeFile("./conf/mysql.toml", &dbConf); err != nil {
 		// TODO 打日志
 		fmt.Println(err)
 	}
+}
+
+// InitDB 初始化数据库
+func InitDB() {
 	// data source name
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		dbConf.User,

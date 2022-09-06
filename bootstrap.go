@@ -3,14 +3,17 @@ package main
 import (
 	"fmt"
 	"io"
-	"net/http"
+	"main/router"
 	"os"
 
 	"github.com/BurntSushi/toml"
 	"github.com/gin-gonic/gin"
 )
 
-// Server 服务变量
+// logFile 日志存储路径
+const logFile = "./log/service.log"
+
+// Server Gin 服务配置
 type Server struct {
 	AppMode  string
 	HTTPPort string
@@ -27,23 +30,19 @@ func InitServer(server *Server) {
 
 // InitLogger 初始化日志模块
 func InitLogger() {
-	logFile, err := os.Create("./log/service.log")
+	f, err := os.Create(logFile)
 	if err != nil {
 		fmt.Println("Could not create log file")
 	}
-	gin.DefaultWriter = io.MultiWriter(logFile)
+	gin.DefaultWriter = io.MultiWriter(f)
 }
 
 // InitRouter 初始化路由
 func InitRouter(HTTPPort string) {
 	r := gin.Default() // Default() 默认带有 Logger 和 Recovery 中间件
-	router := r.Group("api/v1")
-	{
-		router.GET("hello", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"hello": "cookie",
-			})
-		})
-	}
+
+	routerAPI := r.Group("api/")
+	router.RegisterAPI(routerAPI)
+
 	r.Run(HTTPPort) // 启动服务
 }

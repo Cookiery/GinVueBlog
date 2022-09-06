@@ -1,3 +1,3 @@
-/* Package upload 用于上传下载资源
+/* Package upload 用于上传资源
  */
 package upload
