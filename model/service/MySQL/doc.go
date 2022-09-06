@@ -1,1 +1,1 @@
-package MySQL
+package mysql
