@@ -52,7 +52,7 @@ func InitDB() {
 		fmt.Println("连接数据库失败，请检查参数：", err)
 	}
 
-	// 迁移数据表，在没有数据表结构变更时候，建议注释不执行
+	// 迁移数据表，在没有数据表结构变更时候，建议注释不执行，若有数据变动，或者删除表，需要重新执行这行
 	// db.AutoMigrate(&User{}, &Category{}, &Article{})
 
 	sqlDB, _ := db.DB()

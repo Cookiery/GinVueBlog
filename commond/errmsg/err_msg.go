@@ -1,4 +1,4 @@
-package commond
+package errmsg
 
 const (
 	SUCCSE = 200
@@ -13,9 +13,10 @@ const (
 	ERROR_TOKEN_WRONG      = 1006 // TOKEN错误（虚假TOKEN）
 	ERROR_TOKEN_TYPE_WRONG = 1007 // TOKEN格式错误
 
-	// 2000... 文章模块的错误
+	// 2000... 分类模块的错误
+	ERROR_CATEGORY_USED = 2001 // 分类已经存在
 
-	// 3000... 分类模块的错误
+	// 3000... 文章模块的错误
 
 )
 
@@ -29,6 +30,8 @@ var errorMsg = map[int]string{
 	ERROR_TOKEN_RUNTIME:    "TOKEN已过期",
 	ERROR_TOKEN_WRONG:      "TOKEN不正确",
 	ERROR_TOKEN_TYPE_WRONG: "TOKEN格式错误",
+
+	ERROR_CATEGORY_USED: "分类已经存在",
 }
 
 func ErrMsg(code int) string {
