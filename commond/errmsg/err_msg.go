@@ -14,10 +14,11 @@ const (
 	ERROR_TOKEN_TYPE_WRONG = 1007 // TOKEN格式错误
 
 	// 2000... 分类模块的错误
-	ERROR_CATEGORY_USED = 2001 // 分类已经存在
+	ERROR_CATEGORY_USED      = 2001 // 分类已经存在
+	ERROR_CATEGORY_NOT_EXIST = 2002 // 分类不存在
 
 	// 3000... 文章模块的错误
-
+	ERROR_ARTICLE_NOT_EXIST = 3001
 )
 
 var errorMsg = map[int]string{
@@ -31,7 +32,10 @@ var errorMsg = map[int]string{
 	ERROR_TOKEN_WRONG:      "TOKEN不正确",
 	ERROR_TOKEN_TYPE_WRONG: "TOKEN格式错误",
 
-	ERROR_CATEGORY_USED: "分类已经存在",
+	ERROR_CATEGORY_USED:      "分类已经存在",
+	ERROR_CATEGORY_NOT_EXIST: "分类不存在",
+
+	ERROR_ARTICLE_NOT_EXIST: "文章不存在",
 }
 
 func ErrMsg(code int) string {
