@@ -15,7 +15,7 @@ const usersTable = "user"
 type User struct {
 	gorm.Model
 	UserName string `gorm:"type:varchar(20);not null" json:"userName"` // 用户名
-	Password string `gorm:"type:varchar(20);not null" json:"password"` // 密码 // TODO 这里密码不能用明文保存
+	Password string `gorm:"type:varchar(20);not null" json:"password"` // 密码
 	Role     int    `gorm:"type:int" json:"role"`                      // 角色
 }
 
@@ -119,4 +119,20 @@ func EditUser(id int, userData *User) int {
 // 修改密码
 func ChangePassword() {
 
+}
+
+// VerifyLogin
+func VerifyLogin(userName string, password string) int {
+	var user User
+	db.Table(usersTable).Where("user_name = ?", userName).First(&user)
+	if user.ID == 0 {
+		return errmsg.ERROR_USER_NOT_EXIST
+	}
+	if ScryptPassword(password) != user.Password {
+		return errmsg.ERROR_PASSWORD_WRONG
+	}
+	if user.Role != 0 {
+		return errmsg.ERROR_USER_NO_RIGHT
+	}
+	return errmsg.SUCCSE
 }

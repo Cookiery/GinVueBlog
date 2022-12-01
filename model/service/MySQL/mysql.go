@@ -12,7 +12,7 @@ import (
 
 type DBConf struct {
 	User     string
-	PassWord string
+	Password string
 	Host     string
 	Port     string
 	DBName   string
@@ -37,7 +37,7 @@ func InitDB() {
 	// data source name
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		dbConf.User,
-		dbConf.PassWord,
+		dbConf.Password,
 		dbConf.Host,
 		dbConf.Port,
 		dbConf.DBName)

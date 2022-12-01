@@ -41,8 +41,12 @@ func InitLogger() {
 func InitRouter(HTTPPort string) {
 	r := gin.Default() // Default() 默认带有 Logger 和 Recovery 中间件
 
+	// r.LoadHTMLFiles("webPage/test.html", "webPage/index.html")
+	// r.GET("/", func(c *gin.Context) { c.HTML(http.StatusOK, "index.html", gin.H{}) })
+
 	routerAPI := r.Group("api/")
-	router.RegisterAPI(routerAPI)
+	authAPI := r.Group("api/")
+	router.RegisterAPI(routerAPI, authAPI)
 
 	r.Run(HTTPPort) // 启动服务
 }

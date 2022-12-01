@@ -11,7 +11,10 @@ import (
 
 // 查询分类名是否存在
 func CategoryExist(ctx *gin.Context) {
-
+	ctx.Writer.Header().Set("SM-Encrypted", "true")
+	ctx.JSON(http.StatusOK, gin.H{
+		"status": 200,
+	})
 }
 
 // 添加分类
