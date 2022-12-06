@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"main/middleware"
 	"main/router"
 	"os"
 
@@ -39,7 +40,11 @@ func InitLogger() {
 
 // InitRouter 初始化路由
 func InitRouter(HTTPPort string) {
-	r := gin.Default() // Default() 默认带有 Logger 和 Recovery 中间件
+	// r := gin.Default() // Default() 默认带有 Logger 和 Recovery 中间件
+	r := gin.New()
+	r.Use(middleware.Logger())
+	r.Use(gin.Recovery())
+	r.Use(middleware.CORS())
 
 	// r.LoadHTMLFiles("webPage/test.html", "webPage/index.html")
 	// r.GET("/", func(c *gin.Context) { c.HTML(http.StatusOK, "index.html", gin.H{}) })

@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"errors"
 	"main/commond/errmsg"
 	"net/http"
 	"strings"
@@ -11,6 +12,14 @@ import (
 )
 
 var JWTKey = []byte("123")
+
+// 定义错误
+var (
+	TokenExpired     = errors.New("token已过期,请重新登录")
+	TokenNotValidYet = errors.New("token无效,请重新登录")
+	TokenMalformed   = errors.New("token不正确,请重新登录")
+	TokenInvalid     = errors.New("这不是一个token,请重新登录")
+)
 
 type Claims struct {
 	UserName string `json:"username"`
@@ -36,14 +45,27 @@ func CreateToken(userName string) (string, int) {
 }
 
 // VerifyToken verify token
-func VerifyToken(token string) (*Claims, int) {
-	jwtToken, _ := jwt.ParseWithClaims(token, &Claims{}, func(t *jwt.Token) (interface{}, error) {
+func VerifyToken(token string) (*Claims, error) {
+	jwtToken, err := jwt.ParseWithClaims(token, &Claims{}, func(t *jwt.Token) (interface{}, error) {
 		return JWTKey, nil
 	})
+	if err != nil {
+		if ve, ok := err.(*jwt.ValidationError); ok {
+			if ve.Errors&jwt.ValidationErrorMalformed != 0 {
+				return nil, TokenMalformed
+			} else if ve.Errors&jwt.ValidationErrorExpired != 0 {
+				return nil, TokenExpired
+			} else if ve.Errors&jwt.ValidationErrorNotValidYet != 0 {
+				return nil, TokenNotValidYet
+			} else {
+				return nil, TokenInvalid
+			}
+		}
+	}
 	if key, ok := jwtToken.Claims.(*Claims); ok && jwtToken.Valid {
-		return key, errmsg.SUCCSE
+		return key, nil
 	} else {
-		return nil, errmsg.ERROR
+		return nil, nil
 	}
 }
 
@@ -73,15 +95,13 @@ func JWTToken() gin.HandlerFunc {
 			return
 		}
 
-		key, statusCode := VerifyToken(token[1])
-		if statusCode == errmsg.ERROR {
-			statusCode = errmsg.ERROR_TOKEN_WRONG
+		key, err := VerifyToken(token[1])
+		if err != nil {
 			c.JSON(http.StatusOK, gin.H{
 				"code":    statusCode,
-				"message": errmsg.ErrMsg(statusCode),
+				"message": "token 出错",
 			})
 			c.Abort()
-			return
 		}
 
 		if time.Now().Unix() > key.ExpiresAt.Unix() {

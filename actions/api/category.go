@@ -57,10 +57,11 @@ func GetCategory(ctx *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data := mysql.GetCategory(pageSize, pageNum)
+	data, total := mysql.GetCategory(pageSize, pageNum)
 	statusCode := errmsg.SUCCSE
 	ctx.JSON(http.StatusOK, gin.H{
 		"status":  statusCode,
+		"total":   total,
 		"data":    data,
 		"message": errmsg.ErrMsg(statusCode),
 	})

@@ -1,0 +1,5 @@
+time="2022-12-06T10:56:57+08:00" level=info ClientIP=127.0.0.1 DataSize=49 HostName=bogon Method=GET Path="/api/users?pageSize=1&pageNum=2" SpendTime="32 ms" Status=200 UserAgent="ApiPOST Runtime +https://www.apipost.cn"
+time="2022-12-06T10:57:05+08:00" level=info ClientIP=127.0.0.1 DataSize=220 HostName=bogon Method=GET Path="/api/users?" SpendTime="10 ms" Status=200 UserAgent="ApiPOST Runtime +https://www.apipost.cn"
+time="2022-12-06T10:57:19+08:00" level=info ClientIP=127.0.0.1 DataSize=14 HostName=bogon Method=GET Path=/api/category/2 SpendTime="1 ms" Status=200 UserAgent="ApiPOST Runtime +https://www.apipost.cn"
+time="2022-12-06T10:57:25+08:00" level=info ClientIP=127.0.0.1 DataSize=1220 HostName=bogon Method=GET Path="/api/article?pageSize=5&pageNum=1" SpendTime="18 ms" Status=200 UserAgent="ApiPOST Runtime +https://www.apipost.cn"
+8.0.3904.108 Safari/537.36"

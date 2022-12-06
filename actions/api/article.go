@@ -44,9 +44,10 @@ func GetCategoryArticles(ctx *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data, statusCode := mysql.GetCategoryArticles(id, pageSize, pageNum)
+	data, total, statusCode := mysql.GetCategoryArticles(id, pageSize, pageNum)
 	ctx.JSON(http.StatusOK, gin.H{
 		"status":  statusCode,
+		"total":   total,
 		"data":    data,
 		"message": errmsg.ErrMsg(statusCode),
 	})
@@ -73,9 +74,10 @@ func GetArticles(ctx *gin.Context) {
 	if pageNum == 0 {
 		pageSize = -1
 	}
-	data, statusCode := mysql.GetArticles(pageSize, pageNum)
+	data, total, statusCode := mysql.GetArticles(pageSize, pageNum)
 	ctx.JSON(http.StatusOK, gin.H{
 		"status":  statusCode,
+		"total":   total,
 		"data":    data,
 		"message": errmsg.ErrMsg(statusCode),
 	})

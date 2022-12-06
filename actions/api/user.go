@@ -2,6 +2,7 @@ package api
 
 import (
 	"main/commond/errmsg"
+	"main/commond/validator"
 	"main/model/service/mysql"
 	"net/http"
 	"strconv"
@@ -15,6 +16,14 @@ var errCode int
 func AddUser(ctx *gin.Context) {
 	var user mysql.User
 	ctx.ShouldBindJSON(&user)
+	msg, statusCode := validator.Validate(&user)
+	if statusCode != errmsg.SUCCSE {
+		ctx.JSON(http.StatusOK, gin.H{
+			"stats":   statusCode,
+			"message": msg,
+		})
+		return
+	}
 	errCode = mysql.UserExist(user.UserName)
 	if errCode == errmsg.ERROR_USERNAME_USED {
 		errCode = errmsg.ERROR_USERNAME_USED
@@ -78,10 +87,11 @@ func GetUsers(ctx *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data := mysql.GetUsers(pageSize, pageNum)
+	data, total := mysql.GetUsers(pageSize, pageNum)
 	statusCode := errmsg.SUCCSE
 	ctx.JSON(http.StatusOK, gin.H{
 		"status":  statusCode,
+		"total":   total,
 		"data":    data,
 		"message": errmsg.ErrMsg(statusCode),
 	})

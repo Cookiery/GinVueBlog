@@ -1,3 +1,2 @@
-// service 下游服务请求封装（比如请求MySQL）
-// data 数据处理
+// model 封装各种服务请求
 package model

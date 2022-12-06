@@ -43,17 +43,19 @@ func DeleteCategory(id int) int {
 }
 
 // TODO 查询单个分类下的文章
+//
 
 // 查询分类列表
-func GetCategory(pageSize int, pageNum int) []Category {
+func GetCategory(pageSize int, pageNum int) ([]Category, int64) {
 	var categorys []Category
+	var total int64
 	offset := (pageNum - 1) * pageSize
 	if pageSize == -1 && pageNum == -1 {
 		offset = -1
 	}
-	err = db.Limit(pageSize).Offset(offset).Find(&categorys).Error
+	err = db.Limit(pageSize).Offset(offset).Find(&categorys).Count(&total).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil
+		return nil, total
 	}
-	return categorys
+	return categorys, total
 }

@@ -1,6 +1,8 @@
 package main
 
-import "main/model/service/mysql"
+import (
+	"main/model/service/mysql"
+)
 
 // 第一个需求：记录自己读过的书！！！
 // 1. Go Web 编程
