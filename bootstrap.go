@@ -5,6 +5,7 @@ import (
 	"io"
 	"main/middleware"
 	"main/router"
+	"net/http"
 	"os"
 
 	"github.com/BurntSushi/toml"
@@ -46,8 +47,9 @@ func InitRouter(HTTPPort string) {
 	r.Use(gin.Recovery())
 	r.Use(middleware.CORS())
 
-	// r.LoadHTMLFiles("webPage/test.html", "webPage/index.html")
-	// r.GET("/", func(c *gin.Context) { c.HTML(http.StatusOK, "index.html", gin.H{}) })
+	r.LoadHTMLFiles("resume/index.html")
+	r.Static("dist", "resume/dist")
+	r.GET("/resume", func(c *gin.Context) { c.HTML(http.StatusOK, "index.html", gin.H{}) })
 
 	routerAPI := r.Group("api/")
 	authAPI := r.Group("api/")

@@ -1,5 +1,0 @@
-time="2022-12-05T14:43:41+08:00" level=info ClientIP=127.0.0.1 DataSize=14 HostName=localhost Method=GET Path=/api/category/2 SpendTime="1 ms" Status=200 UserAgent="ApiPOST Runtime +https://www.apipost.cn"
-time="2022-12-05T14:46:20+08:00" level=warning ClientIP=152.32.143.81 DataSize=0 HostName=localhost Method=GET Path=/ SpendTime="1 ms" Status=404 UserAgent=
-time="2022-12-05T14:46:39+08:00" level=warning ClientIP=152.32.143.81 DataSize=0 HostName=localhost Method=GET Path=/favicon.ico SpendTime="1 ms" Status=404 UserAgent=Go-http-client/1.1
-time="2022-12-05T14:46:39+08:00" level=warning ClientIP=152.32.143.81 DataSize=0 HostName=localhost Method=GET Path=/robots.txt SpendTime="1 ms" Status=404 UserAgent=Go-http-client/1.1
-time="2022-12-05T14:46:40+08:00" level=warning ClientIP=152.32.143.81 DataSize=0 HostName=localhost Method=GET Path=/sitemap.xml SpendTime="1 ms" Status=404 UserAgent=Go-http-client/1.1
